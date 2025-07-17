@@ -108,16 +108,13 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin: 30px 0;
-    column-gap: 30px;
     .item {
         display: flex;
+        width: 400px;
         img {
             width: auto;
             height: 150px;
             margin-right: 20px;
-        }
-        section {
-
         }
         h1 {
             color: hsl(5, 85%, 63%);
@@ -126,7 +123,7 @@ footer {
             line-height: 4rem;
         }
         h3 {
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: hsl(240, 100%, 5%);
         }
         p {
