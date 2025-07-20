@@ -2,22 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-@font-face {
-    font-family: "myFirstFont";
-    src: url("assets/fonts/Inter-VariableFont_slnt\,wght.ttf");
+    font-family: "Inter", sans-serif;
 }
 
 body {
-    font-family: "myFirstFont";
-    margin: 0 13%;
+    margin: 0 18%;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 8% 0 4% 0;
+    margin: 10% 0 4% 0;
+      position: relative;
+  z-index: 2;
     ul {
         display: flex;
         list-style: none;
@@ -27,90 +25,92 @@ nav {
                 text-decoration: none;
                 color: hsl(236, 13%, 42%);
             }
+            a:hover {
+                color: hsl(5, 85%, 63%);
+            }
         }
+    }
+}
+.hamburger {
+  font-size: 2rem;
+  cursor: pointer;
+  display: none;
+}
+/* Mobile First */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.img-desktop {
+  display: none;
+}
+
+.img-mobile {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.img, .title, .desc, .news, .footer {
+  background: hsl(36, 100%, 99%);
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* ดันปุ่มไปล่างสุด */
+    height: 100%; /* สำคัญ! ต้องกำหนดความสูงให้เท่ากัน */
+    p {
+        color: hsl(236, 13%, 42%);
+        line-height: 1.5rem;
+    }
+    button {
+        align-self: flex-start; /* ปรับตามความต้องการ */
+        padding: 1rem 2rem;
+        background-color: hsl(5, 85%, 63%);
+        color: hsl(240, 100%, 5%);
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 3px;
+        margin-top: 2rem;
+    }
+    button:hover {
+        background-color: hsl(240, 100%, 5%);
+        color: hsl(36, 100%, 99%);
     }
 }
 
-main {
-    gap: 30px;
-    display: flex; 
-    height: fit-content;
-    section {
-        display: grid;
-        grid-template-columns: auto auto;
-        row-gap: 30px;
-        width: 65%;
-        picture {
-            grid-column-start: 1;
-            grid-column-end: 3;
-            border: 1px solid red;
-            height: auto;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .footer-section {
-            display: flex ;
-            justify-content: space-between;
-            gap: 30px;
-            .left-box {
-                border: 1px solid red;
-                width: 50%;
-                h1 {
-                    font-size: 3.5rem;
-                    font-weight: bold;
-                    line-height: 4rem;
-                }
-            }
-            .right-box {
-                border: 1px solid red;
-                width: 50%;
-                p {
-                    font-size: 15px;
-                    line-height: 25px;
-                    color: hsl(236, 13%, 42%);
-                }
-                button {
-                    background-color: hsl(5, 85%, 63%);
-                    padding: 15px 40px;
-                    margin-top: 20px;
-                    border: none;
-                    text-transform: uppercase;
-                    font-weight: bold;
-                    letter-spacing: 2px;
-                }
-             }
-        }
-    } 
-    aside {
-        width: 35%;
-        border: 1px solid red;
-        background-color: hsl(240, 100%, 5%);
-        padding: 25px;
-        color: white;
-        line-height: 40px;
-        h1 {
-            color: hsl(35, 77%, 62%);
-            font-size: 3rem;
-            margin-bottom: 25px;
-        }
-        h2 {
-            font-size: 1.3rem;
-        }
-        hr {
-            margin: 20px 0;
-        }
+.news {
+    background-color: hsl(240, 100%, 5%);
+    padding: 25px;
+    line-height: 40px;
+    h1 {
+        color: hsl(35, 77%, 62%);
+        font-size: 3rem;
+        margin-bottom: 25px;
+    }
+    h2 {
+        font-size: 1.3rem;
+        color: hsl(36, 100%, 99%);
+    }
+    .line {
+        margin: 20px 0;
+        border-top: 1px solid hsl(236, 13%, 42%);
+    }
+    p {
+        color: hsl(236, 13%, 42%);
     }
 }
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 30px 0;
-    .item {
+
+.item {
         display: flex;
         max-width: 350px;
+        cursor: pointer;
         img {
             width: auto;
             height: 150px;
@@ -126,16 +126,56 @@ footer {
             font-size: 1rem;
             color: hsl(240, 100%, 5%);
         }
+        h3:hover {
+            color: hsl(5, 85%, 63%);
+        }
         p {
             font-size: 15px;
             line-height: 25px;
             color: hsl(236, 13%, 42%);
         }
+
+    }
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "img img news"
+      "title desc news"
+      "footer1 footer2 footer3";
+  }
+
+  .img     { grid-area: img; }
+  .title   { grid-area: title; }
+  .desc    { grid-area: desc; }
+  .news    { grid-area: news; }
+
+  /* ระบุตำแหน่ง footer ทั้ง 3 อัน */
+  .footer:nth-of-type(5) { grid-area: footer1; }
+  .footer:nth-of-type(6) { grid-area: footer2; }
+  .footer:nth-of-type(7) { grid-area: footer3; }
+
+  .img-desktop {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .img-mobile {
+    display: none;
+  }
+  .footer {
+    margin-top: 3rem;
+}
+  .hamburger {
+    display: block;
+  }
+}
+.title {
+    h1 {
+        font-size: 4rem;
+        line-height: 4rem;
     }
 }
-
-/* @media screen and (min-width: 800px) {
-  .left, .main, .right {
-    width: 100%;z
-  }
-} */
